@@ -9,6 +9,7 @@ import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { BadRequestError } from '@global/helpers/error-handler';
 import { userService } from '@service/db/user.services';
 import { IUserDocument } from '@user/interfaces/user.interface';
+import { mailTransport } from '@service/emails/mail-transport';
 export class signIn{
   @joiValidation(loginSchema)
   public async read(req:Request,res:Response):Promise<void>{
@@ -54,6 +55,7 @@ export class signIn{
       uId: existingUser!.uId,
       createdAt: existingUser!.createdAt
     } as IUserDocument;
+
 
     res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });
 
