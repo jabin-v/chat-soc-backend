@@ -22,4 +22,17 @@ export class Helpers {
   };
 
 
+
+
+  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+static  parseJson(prop: string): any {
+    try {
+      JSON.parse(prop);
+    } catch (error) {
+      return prop;
+    }
+    return JSON.parse(prop);
+  }
+
+
 };

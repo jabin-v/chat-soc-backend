@@ -10,7 +10,7 @@ import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
 import { uploads } from '@global/helpers/cloudinary-upload';
 import { IUserDocument } from '@user/interfaces/user.interface';
-import { omit, Omit } from 'lodash';
+
 
 import { UserCache } from '@service/redis/user.cache';
 import { authQueue } from '@service/queues/auth.queue';
@@ -70,7 +70,7 @@ export class SignUp{
 
     // omit(userDataForCache,['uid','username','avatarColor','password']);
 
-    authQueue.addAuthUserJob('addAuthUserToDB',{value:userDataForCache} );
+    authQueue.addAuthUserJob('addAuthUserToDB',{value:authData} );
 
     userQueue.addUserJob('addUserToDB',{value:userDataForCache});
 
