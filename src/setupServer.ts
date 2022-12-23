@@ -7,15 +7,18 @@ import compression from 'compression';
 import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
 import 'express-async-errors';
-import {config} from './config';
 import {Server} from 'socket.io';
 import {createClient} from 'redis';
 import {createAdapter} from '@socket.io/redis-adapter';
-import applicationROutes from './routes';
-import { CustomError, IErrorResponse } from './shared/globals/helpers/error-handler';
 import Logger from 'bunyan';
 
-const SERVER_PORT = 5000;
+import {config} from '@root/config';
+import applicationROutes from '@root/routes';
+import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
+
+
+
+const SERVER_PORT = 3500;
 const log: Logger = config.createLogger('server');
 
 
