@@ -7,13 +7,14 @@ import { config } from '@root/config';
 import { IAuthJob } from '@auth/interfaces/auth.interfaces';
 import { IEmailJob, IUserJob } from '@user/interfaces/user.interface';
 import { IPostJobData } from '@post/interfaces/post.interface';
+import { IReactionJob } from '@reactions/interfaces/reaction-interfaces';
 
 
 type IBaseJobData =
   | IAuthJob
   | IEmailJob
   | IPostJobData
-  // | IReactionJob
+  | IReactionJob
   // | ICommentJob
   // | IFollowerJobData
   // | IBlockedUserJobData
