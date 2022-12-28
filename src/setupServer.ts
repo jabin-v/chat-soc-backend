@@ -16,6 +16,8 @@ import {config} from '@root/config';
 import applicationROutes from '@root/routes';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 
+import { SocketIoPostHandler } from '@socket/post';
+
 
 
 const SERVER_PORT = 3500;
@@ -126,6 +128,10 @@ const log: Logger = config.createLogger('server');
        });
 
     };
-    private socketIOConnections(io: Server): void {console.log('first');};
+    private socketIOConnections(io: Server): void {
+      const postSocketHandler:SocketIoPostHandler=new SocketIoPostHandler(io);
+
+      postSocketHandler.listen();
+    };
 
  };
