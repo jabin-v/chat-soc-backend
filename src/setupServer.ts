@@ -17,6 +17,8 @@ import applicationROutes from '@root/routes';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 
 import { SocketIoPostHandler } from '@socket/post';
+import { SocketIOFollowerHandler } from '@socket/follower';
+import { SocketIOUserHandler } from '@socket/user';
 
 
 
@@ -130,8 +132,12 @@ const log: Logger = config.createLogger('server');
     };
     private socketIOConnections(io: Server): void {
       const postSocketHandler:SocketIoPostHandler=new SocketIoPostHandler(io);
+      const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
+      const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
 
       postSocketHandler.listen();
+      followerSocketHandler.listen();
+      userSocketHandler.listen();
     };
 
  };
