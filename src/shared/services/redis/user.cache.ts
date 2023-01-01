@@ -2,11 +2,15 @@ import { ServerError } from '@global/helpers/error-handler';
 import { Helpers } from '@global/helpers/helpers';
 import { config } from '@root/config';
 import { BaseCache } from '@service/redis/base.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument,INotificationSettings, ISocialLinks,  } from '@user/interfaces/user.interface';
 import Logger from 'bunyan';
+import { RedisCommandRawReply } from '@redis/client/dist/lib/commands';
 
 
 const log: Logger = config.createLogger('userCache');
+
+type UserItem = string | ISocialLinks | INotificationSettings;
+type UserCacheMultiType = string | number | Buffer | RedisCommandRawReply[] | IUserDocument | IUserDocument[];
 
 export class UserCache extends BaseCache{
 
@@ -159,6 +163,30 @@ export class UserCache extends BaseCache{
       throw new ServerError('Server error. Try again.');
     }
   }
+
+
+  public async updateSingleUserItemInCache(userId: string, prop: string, value: UserItem):Promise<IUserDocument | null>{
+
+   try {
+    if (!this.client.isOpen) {
+      await this.client.connect();
+    }
+    const dataToSave: string[] = [`${prop}`, JSON.stringify(value)];
+    await this.client.HSET(`users:${userId}`, dataToSave);
+    const response: IUserDocument = (await this.getUserFromCache(userId)) as IUserDocument;
+    return response;
+
+   } catch (error) {
+
+    log.error(error);
+      throw new ServerError('Server error. Try again.');
+
+   }
+
+
+
+    }
+
 
 
 }
