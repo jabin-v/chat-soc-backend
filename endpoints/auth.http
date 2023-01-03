@@ -20,7 +20,7 @@ Accept: application/json
 withCredentials: true
 
 {
-  "username": "jabin",
+  "username": "arjun",
   "password": "qwerty",
   "email": "abc@gmaill.com",
   "avatarColor": "red",

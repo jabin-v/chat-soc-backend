@@ -10,6 +10,7 @@ import { IPostJobData } from '@post/interfaces/post.interface';
 import { IReactionJob } from '@reactions/interfaces/reaction-interfaces';
 import { ICommentJob } from '@comment/interfaces/comment.interface';
 import { IFollowerJobData } from '@follower/interfaces/follower.interface';
+import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
 
 type IBaseJobData =
@@ -22,8 +23,8 @@ type IBaseJobData =
   // | IBlockedUserJobData
   // | INotificationJobData
   // | IFileImageJobData
-  // | IChatJobData
-  // | IMessageData
+  | IChatJobData
+  | IMessageData
   | IUserJob;
 
 
