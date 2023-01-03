@@ -13,6 +13,9 @@ type UserItem = string | ISocialLinks | INotificationSettings;
 type UserCacheMultiType = string | number | Buffer | RedisCommandRawReply[] | IUserDocument | IUserDocument[];
 
 export class UserCache extends BaseCache{
+  static getUserFromCache(arg0: string): IUserDocument | PromiseLike<IUserDocument> {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(){
     super('userChache');
@@ -47,8 +50,6 @@ export class UserCache extends BaseCache{
     } = createdUser;
 
 
-    //there is no reason for breaking the arryay in to 3 parts
-    //just my style
 
     const firstList: string[] = [
       '_id',
