@@ -9,8 +9,10 @@ import { IEmailJob, IUserJob } from '@user/interfaces/user.interface';
 import { IPostJobData } from '@post/interfaces/post.interface';
 import { IReactionJob } from '@reactions/interfaces/reaction-interfaces';
 import { ICommentJob } from '@comment/interfaces/comment.interface';
-import { IFollowerJobData } from '@follower/interfaces/follower.interface';
+import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/follower.interface';
 import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
+import { INotificationJobData } from '@notification/interfaces/notification.interface';
+import { IFileImageJobData } from '@image/interfaces/image.interface';
 
 
 type IBaseJobData =
@@ -20,9 +22,9 @@ type IBaseJobData =
   | IReactionJob
   | ICommentJob
   | IFollowerJobData
-  // | IBlockedUserJobData
-  // | INotificationJobData
-  // | IFileImageJobData
+  | IBlockedUserJobData
+  | INotificationJobData
+  | IFileImageJobData
   | IChatJobData
   | IMessageData
   | IUserJob;
